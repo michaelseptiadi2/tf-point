@@ -122,6 +122,17 @@ $('#calculate').click(function(){
                             bonus = arrLevel[i].bonusPoint
                         }
                     }
+                }else{
+                    medal = 0
+                    totalMedal = arr[arr.length-1].totalMedal + medal
+                    for(let i=0; i<arrLevel.length; i++){
+                        // Perhitungan Sisa Point
+                        for(let j=0; j<arrLevel[i].medal.length; j++){
+                            if(arr[arr.length-1].totalMedal == arrLevel[i].medal[j]){
+                                point = 100 + ((pips - 200) * arrLevel[i].perkalian)
+                            }
+                        }
+                    }
                 }
 
                 // PENGECEKAN UDAH PERNAH BONUS
@@ -139,7 +150,7 @@ $('#calculate').click(function(){
 
             let data = {pips, signal, point, medal, target: pips * 0.7, totalPoint, totalMedal, bonus, consecutiveLoss: 0}
             arr.push(data)
-            $('#tableCalculate').append("<tr><td>"+ (arr.length) +"</td><td>"+arr[arr.length-1].pips+"</td><td>"+arr[arr.length-1].signal+"</td><td>"+(arr[arr.length-1].point).toFixed(2)+"</td><td>"+(arr[arr.length-1].totalPoint).toFixed(2)+"</td><td>"+arr[arr.length-1].medal+"</td><td>"+arr[arr.length-1].totalMedal+"</td><td>"+arr[arr.length-1].target+"</td><td>"+arr[arr.length-1].bonus+"</td></tr>")
+            $('#tableCalculate').append("<tr><td>"+ (arr.length) +"</td><td>"+arr[arr.length-1].pips+"</td><td>"+arr[arr.length-1].signal+"</td><td>"+(arr[arr.length-1].point)+"</td><td>"+(arr[arr.length-1].totalPoint).toFixed(2)+"</td><td>"+arr[arr.length-1].medal+"</td><td>"+arr[arr.length-1].totalMedal+"</td><td>"+arr[arr.length-1].target+"</td><td>"+arr[arr.length-1].bonus+"</td></tr>")
         }else{
             if(arr.length == 0){
                 let data = {
@@ -218,7 +229,7 @@ $('#calculate').click(function(){
                     }
                 }
             }
-            
+
             avgMonth = sumMonth/profitMonth
 
             let loss = ((parseInt(pips) * -1)/avgMonth) * 100
